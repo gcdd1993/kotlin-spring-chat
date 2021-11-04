@@ -43,6 +43,11 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
     implementation("io.r2dbc:r2dbc-h2")
 
+    // Adding RSocket
+    implementation("org.springframework.boot:spring-boot-starter-rsocket")
+
+    testImplementation("app.cash.turbine:turbine:0.4.1")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
