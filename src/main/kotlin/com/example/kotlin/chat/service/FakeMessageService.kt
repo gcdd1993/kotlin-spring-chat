@@ -21,7 +21,7 @@ class FakeMessageService : MessageService {
         "Yoda"         to { Faker.instance().yoda().quote() }
     )
 
-    override fun latest(): List<MessageVM> {
+    override suspend fun latest(): List<MessageVM> {
         val count = Random.nextInt(1, 15)
         return (0..count).map {
             val user = users.values.random()
@@ -31,11 +31,11 @@ class FakeMessageService : MessageService {
         }.toList()
     }
 
-    override fun after(messageId: String): List<MessageVM> {
+    override suspend fun after(messageId: String): List<MessageVM> {
         return latest()
     }
 
-    override fun post(message: MessageVM) {
+    override suspend fun post(message: MessageVM) {
         TODO("Not yet implemented")
     }
 }

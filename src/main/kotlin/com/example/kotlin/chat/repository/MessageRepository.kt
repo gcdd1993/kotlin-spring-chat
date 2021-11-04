@@ -1,32 +1,32 @@
 package com.example.kotlin.chat.repository
 
-import org.springframework.data.jdbc.repository.query.Query
-import org.springframework.data.repository.CrudRepository
+import org.springframework.data.r2dbc.repository.Query
+import org.springframework.data.repository.kotlin.CoroutineCrudRepository
 import org.springframework.data.repository.query.Param
 
-interface MessageRepository : CrudRepository<Message, String> {
+interface MessageRepository : CoroutineCrudRepository<Message, String> {
 
     // language=SQL
     @Query(
         """
-        SELECT * FROM (
-            SELECT * FROM MESSAGES
-            ORDER BY "SENT" DESC
-            LIMIT 10
-        ) ORDER BY "SENT"
+        select * from (
+            select * from MESSAGES
+            order by "SENT" desc
+            limit 10
+        ) order by "SENT"
     """
     )
-    fun findLatest(): List<Message>
+    suspend fun findLatest(): List<Message>
 
     // language=SQL
     @Query(
         """
-        SELECT * FROM (
-            SELECT * FROM MESSAGES
-            WHERE SENT > (SELECT SENT FROM MESSAGES WHERE ID = :id)
-            ORDER BY "SENT" DESC
-        ) ORDER BY "SENT"
+        select * from (
+            select * from MESSAGES
+            where SENT > (select SENT from MESSAGES where ID = :id)
+            order by "SENT" desc
+        ) order by "SENT"
     """
     )
-    fun findLatest(@Param("id") id: String): List<Message>
+    suspend fun findLatest(@Param("id") id: String): List<Message>
 }
