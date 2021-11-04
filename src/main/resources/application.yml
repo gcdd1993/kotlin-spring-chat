@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    driverClassName: org.h2.Driver
+    initialization-mode: always
+    password: password
+    schema: classpath:sql/schema.sql
+    url: jdbc:h2:file:./build/data/testdb
+    username: sa
+  rsocket:
+    server:
+      mapping-path: /rsocket
+      transport: websocket
+feign:
+  client:
+    config:
+      default:
+        logger-level: FULL
+logging:
+  level:
+    "com.example.kotlin.chat.feign": debug
+    "kotlinx.coroutines": debug
+

@@ -20,7 +20,7 @@ repositories {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
-    implementation("org.springframework.boot:spring-boot-starter-web")
+//    implementation("org.springframework.boot:spring-boot-starter-web")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("com.github.javafaker:javafaker:1.0.2")
@@ -47,6 +47,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-rsocket")
 
     testImplementation("app.cash.turbine:turbine:0.4.1")
+
+    implementation("org.springframework.cloud:spring-cloud-starter-openfeign:3.0.5")
+    implementation("org.springframework.cloud:spring-cloud-starter-loadbalancer:3.0.4")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
